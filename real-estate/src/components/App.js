@@ -13,19 +13,13 @@ const App = () => {
     return (
         <div className="ui container">
             <BrowserRouter>
-                <div className="ui grid">
-                    <div className="four wide column">
-                        <Header />
-                    </div>
-                    <div className="twelve wide stretched column">
-                        <Route path='/' exact component={HomeList} />
-                        <Route path='/homes/new' exact component={HomeCreate} />
-                        <Route path='/homes/edit' exact component={HomeEdit} />
-                        <Route path='/homes/delete' exact component={HomeDelete} />
-                        <Route path='/homes/details' exact component={HomeDetails} />
-                        <Route path='/mortgagecalculator' exact component={MortgageCalculator} />
-                    </div>
-                </div>
+                <Header />
+                <Route path='/' exact component={HomeList} />
+                <Route path='/homes/new' exact component={HomeCreate} />
+                <Route path='/homes/edit' exact component={HomeEdit} />
+                <Route path='/homes/delete' exact component={HomeDelete} />
+                <Route path='/homes/details' exact component={HomeDetails} />
+                <Route path='/mortgagecalculator' exact component={MortgageCalculator} />
             </BrowserRouter>
         </div>
     )
