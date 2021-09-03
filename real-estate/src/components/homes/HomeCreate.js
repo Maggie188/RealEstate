@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { createHome } from '../../actions';
 
 
 class HomeCreate extends React.Component {
@@ -43,8 +45,8 @@ class HomeCreate extends React.Component {
       )
    }
 
-   onSubmit(formValues) {
-      console.log(formValues)
+   onSubmit = formValues => {
+      this.props.createHome(formValues);
    };
 
 
@@ -80,7 +82,9 @@ const validate = formValues => {
    return errors;
 };
 
-export default reduxForm({
+const formWrapped = reduxForm({
    form: 'homeCreate',
    validate
 })(HomeCreate);
+
+export default connect(null, { createHome })(formWrapped);

@@ -1,3 +1,14 @@
 {
-    "homes" : []
+  "homes": [
+    {
+      "address": "2134 First Rd, San Jose, CA 94354",
+      "price": "1230000",
+      "year": "1979",
+      "bed": "3",
+      "bath": "2",
+      "squarefeet": "1000",
+      "lot": "2000",
+      "id": 1
+    }
+  ]
 }
