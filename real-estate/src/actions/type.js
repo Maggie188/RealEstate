@@ -1,1 +1,0 @@
-export const CTREATE_HOME = 'CREATE_HOME';
