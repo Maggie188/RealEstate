@@ -12,6 +12,7 @@ export const createHome = formValues => async dispatch => {
     const response = await homes.post('/homes', formValues);
 
     dispatch({ type: CREATE_HOME, payload: response.data });
+    history.push('/');
 };
 
 
