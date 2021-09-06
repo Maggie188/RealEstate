@@ -19,6 +19,26 @@
       "squarefeet": "1300",
       "lot": "2300",
       "id": 2
+    },
+    {
+      "address": "1567 Parkmerced Dr,  San Francisco, CA 73645",
+      "price": "1230000",
+      "year": "1889",
+      "bed": "5",
+      "bath": "3",
+      "squarefeet": "2600",
+      "lot": "5039",
+      "id": 3
+    },
+    {
+      "address": "1234 Green St, San jose, CA 46573",
+      "price": "1234999",
+      "year": "1898",
+      "bed": "4",
+      "bath": "3",
+      "squarefeet": "2300",
+      "lot": "4000",
+      "id": 4
     }
   ]
 }

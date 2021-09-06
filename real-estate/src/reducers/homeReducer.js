@@ -15,7 +15,7 @@ export default (state={}, action) => {
         case CREATE_HOME:
             return {...state, [action.payload.id]: action.payload };
         case FETCH_HOMES:
-            return {...state, ..._.mapKeys(action.payload)};
+            return {...state, ..._.mapKeys(action.payload, 'id')};
         case DELETE_HOME:
             return _.omit(state, action.payload);
         case EDIT_HOME:

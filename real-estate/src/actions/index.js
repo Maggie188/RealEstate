@@ -6,6 +6,7 @@ import {
     DELETE_HOME,
     EDIT_HOME
  } from './types';
+ import history from '../history';
 
 
 export const createHome = formValues => async dispatch => {
