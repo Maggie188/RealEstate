@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchHomes } from '../../actions';
-
+import { Link } from 'react-router-dom';
 
 class HomeList extends React.Component {
    componentDidMount() {
@@ -17,11 +17,14 @@ class HomeList extends React.Component {
                   <div className="header">
                      { home.address }
                      <div className="right floated content">
-                        <button className="ui button primary">
+                        <Link to={`/homes/edit/${home.id}`} className="tiny ui button primary">
                            Edit
-                        </button>
-                        <button className="ui button negative">
+                        </Link>
+                        <button className="tiny ui button negative">
                            Delete
+                        </button>
+                        <button className="tiny ui olive button">
+                           Monthly cost 
                         </button>
                      </div>
                   </div>
