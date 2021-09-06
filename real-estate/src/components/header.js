@@ -11,7 +11,8 @@ const Header = () => {
                 Mortgage Calculator
             </Link>
             <div className="right menu">
-                <Link to="/homes/new" className="ui item">
+                <Link to="/homes/new" className="ui button">
+                    <i className="plus icon"></i>
                     Add a home
                 </Link>
             </div>
