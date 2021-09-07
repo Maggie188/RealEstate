@@ -43,4 +43,5 @@ export const deleteHome = id => async dispatch => {
     await homes.delete(`/homes/${id}`);
 
     dispatch({ type: DELETE_HOME, payload: id });
+    history.push('/');
 };

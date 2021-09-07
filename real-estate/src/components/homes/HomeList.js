@@ -14,7 +14,7 @@ class HomeList extends React.Component {
             <div className="item" key={ home.id }>
                <i className="large home icon"></i>
                <div className="content">
-                  <div class="ui grid">
+                  <div className="ui grid">
                      <h4 className="eight wide column">
                         <Link to={`/homes/details/${home.id}`}>{ home.address }</Link>
                      </h4>

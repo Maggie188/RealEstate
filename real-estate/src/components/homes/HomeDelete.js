@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from '../Modal';
 import history from '../../history';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchHome, deleteHome } from '../../actions';
 
 
@@ -11,10 +12,14 @@ class HomeDelete extends React.Component {
    }
 
    renderActions() {
+      console.log(this.props);
+
+      const { id } = this.props.match.params;
+
       return (
          <React.Fragment>
-            <button className="ui button">Cancel</button>
-            <button className="ui primary button">Delete</button>
+            <Link to="/" className="ui button">Cancel</Link>
+            <button onClick={() => this.props.deleteHome(id)} className="ui primary button">Delete</button>
          </React.Fragment>
       );
    }
