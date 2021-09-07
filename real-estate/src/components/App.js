@@ -19,9 +19,9 @@ const App = () => {
                 <Route path='/' exact component={HomeList} />
                 <Route path='/homes/new' exact component={HomeCreate} />
                 <Route path='/homes/edit/:id' exact component={HomeEdit} />
-                <Route path='/homes/delete' exact component={HomeDelete} />
-                <Route path='/homes/details' exact component={HomeDetails} />
-                <Route path='/homes/monthlycost' exact component={MonthlyCost} />
+                <Route path='/homes/delete/:id' exact component={HomeDelete} />
+                <Route path='/homes/details/:id' exact component={HomeDetails} />
+                <Route path='/homes/monthlycost/:id' exact component={MonthlyCost} />
                 <Route path='/mortgagecalculator' exact component={MortgageCalculator} />
             </Router>
         </div>

@@ -1,8 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { fetchHome, editHome } from '../../actions';
 
+class HomeEdit extends React.Component {
+   componentDidMount() {
+      this.props.fetchStream(this.props.match.params.id)
+   }
 
-const HomeEdit = () => {
-   return <div>HomeEdit</div> 
-};
+   render() {
+      if (!this.props.home) {
+         return <div>Loading...</div>;
+      }
+      
+      return (
 
-export default HomeEdit;
+      )
+   }
+}
+
+const mapStateToProps = (state, ownProps) => {
+   return { homes: state.homes[ownProps.match.params.id] }
+}
+export default connect(mapStateToProps, { fetchHome, editHome })(HomeEdit);
