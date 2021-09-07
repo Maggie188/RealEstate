@@ -9,7 +9,6 @@ class HomeEdit extends React.Component {
    }
 
    onSubmit = formValues => {
-      console.log(formValues)
       this.props.editHome(this.props.match.params.id, formValues)
    }
 

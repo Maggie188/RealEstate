@@ -15,7 +15,7 @@ class HomeList extends React.Component {
                <i className="large home icon"></i>
                <div className="content">
                   <div className="header">
-                     { home.address }
+                     <Link to={`/homes/details/${home.id}`}>{ home.address }</Link>
                      <div className="right floated content">
                         <Link to={`/homes/edit/${home.id}`} className="tiny ui button primary">
                            Edit

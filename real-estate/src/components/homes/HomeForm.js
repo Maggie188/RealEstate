@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-
+import { Link } from 'react-router-dom';
 
 
 class HomeForm extends React.Component {
@@ -26,23 +26,18 @@ class HomeForm extends React.Component {
       )
    }
 
-   renderSelect({ label }) {
-      return  (
-         <div className="field">
-            <label>{label}</label>
-            <select className="ui fluid search dropdown">
-               <option value="">Select Home Type</option>
-               <option value="HO">Houses</option>
-               <option value="TH">Townhomes</option>
-               <option value="MF">Multi-family</option>
-               <option value="CO">Condons/Co-ops</option>
-               <option value="LO">Lots/Land</option>
-               <option value="AP">Apartments</option>
-               <option value="MA">Manufactured</option>
-            </select>
-         </div>
-      )
-   }
+   renderSelect = ({label, children, meta, input}) => {
+        const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+        return  (
+            <div className={className}>
+                <label>{label}</label>
+                <select {...input} >
+                    {children}
+                </select>
+                {this.renderError(meta)}
+            </div>
+        );
+    }
 
    onSubmit = formValues => {
       this.props.onSubmit(formValues);
@@ -56,12 +51,22 @@ class HomeForm extends React.Component {
             <Field name="address" component={this.renderInput} label="Address" />
             <Field name="price" component={this.renderInput} label="Price ($)" />
             <Field name="year" component={this.renderInput} label="Year Built" />
-            <Field name="type" component={this.renderSelect} label="Home Type" />
+            <Field name="type" component={this.renderSelect} label="Home Type">
+                <option />
+                <option value="HO">Houses</option>
+                <option value="TH">Townhomes</option>
+                <option value="MF">Multi-family</option>
+                <option value="CO">Condons/Co-ops</option>
+                <option value="LO">Lots/Land</option>
+                <option value="AP">Apartments</option>
+                <option value="MA">Manufactured</option>
+            </Field>
             <Field name="bed" component={this.renderInput} label="Number of Bedroom" />
             <Field name="bath" component={this.renderInput} label="Number of Bathroom" />
             <Field name="squarefeet" component={this.renderInput} label="Square Feet" />
             <Field name="lot" component={this.renderInput} label="Lot Size" />
-            <button className="ui right floated button primary">Submit</button>
+            <button type="submit" className="ui right floated button primary">Save</button>
+            <Link to="/" className="ui right floated button">Discard</Link>
          </form>
       );
    }

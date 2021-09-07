@@ -8,17 +8,19 @@
       "bath": "2",
       "squarefeet": "1000",
       "lot": "2000",
-      "id": 1
+      "id": 1,
+      "type": "TH"
     },
     {
       "address": "4758 Green St, Sunnyvale, CA 94567",
-      "price": "2340000",
+      "price": "180000000",
       "year": "1989",
       "bed": "3",
       "bath": "2",
       "squarefeet": "1300",
       "lot": "2300",
-      "id": 2
+      "id": 2,
+      "type": "HO"
     },
     {
       "address": "1567 Parkmerced Dr,  San Francisco, CA 73645",
@@ -28,17 +30,19 @@
       "bath": "3",
       "squarefeet": "2600",
       "lot": "5039",
-      "id": 3
+      "id": 3,
+      "type": "CO"
     },
     {
       "address": "1234 Green St, San jose, CA 46573",
       "price": "1234999",
       "year": "1898",
-      "bed": "4",
+      "bed": "5",
       "bath": "3",
       "squarefeet": "2300",
       "lot": "4000",
-      "id": 4
+      "id": 4,
+      "type": "MF"
     }
   ]
 }
