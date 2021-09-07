@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '../Modal';
+import history from '../../history';
 
 
 const HomeDelete = () => {
@@ -12,10 +13,11 @@ const HomeDelete = () => {
 
    return (
       <div>
-         <Modal 
+         <Modal
             title="Delete Home"
             content="Are you sure you want to delete this home?"
             actions={actions}
+            onDismiss={() => history.push('/')}
          />
       </div>
    ); 
