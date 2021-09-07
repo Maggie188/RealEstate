@@ -23,15 +23,15 @@ class HomeDetails extends React.Component {
                         <h4>Address</h4>
                      </td>
                      <td>
-                x        {this.props.home.address}
+                        {this.props.home.address}
                      </td>
                   </tr>
                   <tr>
                      <td>
-                        <h4>Price ($)</h4>
+                        <h4>List Price</h4>
                      </td>
                      <td>
-                        {this.props.home.price}
+                        $ {this.props.home.price}
                      </td>
                   </tr>
                   <tr>

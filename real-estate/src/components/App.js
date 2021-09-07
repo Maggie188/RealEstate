@@ -5,7 +5,6 @@ import HomeDelete from './homes/HomeDelete';
 import HomeDetails from './homes/HomeDetails';
 import HomeEdit from './homes/HomeEdit';
 import HomeList from './homes/HomeList';
-import MortgageCalculator from './homes/MortgageCalculator';
 import MonthlyCost from './homes/MonthlyCost';
 import Header from './header';
 import history from '../history';
@@ -22,7 +21,6 @@ const App = () => {
                 <Route path='/homes/delete/:id' exact component={HomeDelete} />
                 <Route path='/homes/details/:id' exact component={HomeDetails} />
                 <Route path='/homes/monthlycost/:id' exact component={MonthlyCost} />
-                <Route path='/mortgagecalculator' exact component={MortgageCalculator} />
             </Router>
         </div>
     )

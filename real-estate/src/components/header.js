@@ -7,9 +7,6 @@ const Header = () => {
             <Link to="/" className="item">
                 Home
             </Link>
-            <Link to="/mortgagecalculator" className="item">
-                Mortgage Calculator
-            </Link>
             <a href="https://www.google.com/maps" className="item">
                 Maps
             </a>

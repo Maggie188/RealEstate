@@ -49,7 +49,7 @@ class HomeForm extends React.Component {
       return (
          <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
             <Field name="address" component={this.renderInput} label="Address" />
-            <Field name="price" component={this.renderInput} label="Price ($)" />
+            <Field name="price" component={this.renderInput} label="List Price ($)" />
             <Field name="year" component={this.renderInput} label="Year Built" />
             <Field name="type" component={this.renderSelect} label="Home Type">
                 <option />
