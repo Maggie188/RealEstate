@@ -12,8 +12,6 @@ class HomeDelete extends React.Component {
    }
 
    renderActions() {
-      console.log(this.props);
-
       const { id } = this.props.match.params;
 
       return (
@@ -25,9 +23,9 @@ class HomeDelete extends React.Component {
    }
   
    renderContent() {
-     if (!this.props.home) {
-        return 'Are you sure you want to delete this home?'
-     }
+      if (!this.props.home) {
+         return 'Are you sure you want to delete this home?'
+      }
 
      return `Are you sure you want to delete the home at ${this.props.home.address}?`
    }
