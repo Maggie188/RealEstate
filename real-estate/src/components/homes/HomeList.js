@@ -14,21 +14,25 @@ class HomeList extends React.Component {
             <div className="item" key={ home.id }>
                <i className="large home icon"></i>
                <div className="content">
-                  <div className="header">
-                     <Link to={`/homes/details/${home.id}`}>{ home.address }</Link>
-                     <div className="right floated content">
-                        <Link to={`/homes/edit/${home.id}`} className="tiny ui button primary">
-                           Edit
-                        </Link>
-                        <Link to={`/homes/delete/${home.id}`} className="tiny ui button negative">
-                           Delete
-                        </Link>
-                        <button className="tiny ui olive button">
-                           Monthly cost 
-                        </button>
+                  <div class="ui grid">
+                     <h4 className="eight wide column">
+                        <Link to={`/homes/details/${home.id}`}>{ home.address }</Link>
+                     </h4>
+                     <div className="three wide column header">$ { home.price }</div>
+                     <div className="five wide column">
+                        <div className="right floated content">
+                           <Link to={`/homes/edit/${home.id}`} className="tiny ui button primary">
+                              Edit
+                           </Link>
+                           <Link to={`/homes/delete/${home.id}`} className="tiny ui button negative">
+                              Delete
+                           </Link>
+                           <button className="tiny ui olive button">
+                              Monthly cost 
+                           </button>
+                        </div>
                      </div>
-                  </div>
-                  <div className="description">$ { home.price }</div>
+                  </div> 
                   <div className="ui form">
                      <div className="field">
                         <textarea rows="1" placeholder="I like this home because..."></textarea>

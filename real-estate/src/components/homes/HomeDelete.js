@@ -1,26 +1,45 @@
 import React from 'react';
 import Modal from '../Modal';
 import history from '../../history';
+import { connect } from 'react-redux';
+import { fetchHome, deleteHome } from '../../actions';
 
 
-const HomeDelete = () => {
-   const actions = (
-      <React.Fragment>
-         <button className="ui button">Cancel</button>
-         <button className="ui primary button">Delete</button>
-      </React.Fragment>
-   );
+class HomeDelete extends React.Component {
+   componentDidMount() {
+      this.props.fetchHome(this.props.match.params.id)
+   }
 
-   return (
-      <div>
+   renderActions() {
+      return (
+         <React.Fragment>
+            <button className="ui button">Cancel</button>
+            <button className="ui primary button">Delete</button>
+         </React.Fragment>
+      );
+   }
+  
+   renderContent() {
+     if (!this.props.home) {
+        return 'Are you sure you want to delete this home?'
+     }
+
+     return `Are you sure you want to delete the home at ${this.props.home.address}?`
+   }
+
+   render() {
+      return (
          <Modal
             title="Delete Home"
-            content="Are you sure you want to delete this home?"
-            actions={actions}
+            content={this.renderContent()}
+            actions={this.renderActions()}
             onDismiss={() => history.push('/')}
          />
-      </div>
-   ); 
-};
+      ); 
+   }
+}
 
-export default HomeDelete;
+const mapStateToProps = (state, ownProps) => {
+   return {home: state.homes[ownProps.match.params.id]}
+}
+export default connect(mapStateToProps, { fetchHome, deleteHome })(HomeDelete);
