@@ -14,8 +14,7 @@ class HomeCreate extends React.Component {
          <div>
             <h3>Add a Home</h3>
             <HomeForm onSubmit={this.onSubmit} />
-         </div>
-         
+         </div> 
       );
    }
 };

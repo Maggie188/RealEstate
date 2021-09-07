@@ -32,9 +32,10 @@ export const fetchHome = id => async dispatch => {
 
 
 export const editHome = (id, formValues) => async dispatch => {
-    const response = await homes.put(`/homes/${id}`, formValues);
+    const response = await homes.patch(`/homes/${id}`, formValues);
 
     dispatch({ type: EDIT_HOME, payload: response.data });
+    history.push('/');
 };
 
 

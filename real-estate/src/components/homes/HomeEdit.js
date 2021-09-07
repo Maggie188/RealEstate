@@ -1,24 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchHome, editHome } from '../../actions';
+import HomeForm from './HomeForm';
 
 class HomeEdit extends React.Component {
    componentDidMount() {
-      this.props.fetchStream(this.props.match.params.id)
+      this.props.fetchHome(this.props.match.params.id)
    }
 
+   onSubmit = formValues => {
+      console.log(formValues)
+      this.props.editHome(this.props.match.params.id, formValues)
+   }
+
+   
    render() {
       if (!this.props.home) {
          return <div>Loading...</div>;
       }
-      
-      return (
 
+      const { id, ...initialValues } = this.props.home;
+
+      return (
+         <div>
+            <h3>Edit the Home</h3>
+            <HomeForm 
+               initialValues ={ initialValues }
+               onSubmit={this.onSubmit} 
+            />
+      </div> 
       )
    }
 }
 
 const mapStateToProps = (state, ownProps) => {
-   return { homes: state.homes[ownProps.match.params.id] }
+   return { home: state.homes[ownProps.match.params.id] }
 }
 export default connect(mapStateToProps, { fetchHome, editHome })(HomeEdit);
