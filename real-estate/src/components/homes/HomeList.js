@@ -20,9 +20,9 @@ class HomeList extends React.Component {
                         <Link to={`/homes/edit/${home.id}`} className="tiny ui button primary">
                            Edit
                         </Link>
-                        <button className="tiny ui button negative">
+                        <Link to={`/homes/delete/${home.id}`} className="tiny ui button negative">
                            Delete
-                        </button>
+                        </Link>
                         <button className="tiny ui olive button">
                            Monthly cost 
                         </button>
