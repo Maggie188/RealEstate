@@ -12,30 +12,28 @@ class HomeList extends React.Component {
       return this.props.homes.map(home => {
          return (
             <div className="item" key={ home.id }>
-               <i className="large home icon"></i>
+               <div className="icon">
+                  <i className="large home icon"></i>
+               </div>
                <div className="content">
-                  <div className="ui grid">
-                     <h4 className="eight wide column">
-                        <Link to={`/homes/details/${home.id}`}>{ home.address }</Link>
-                     </h4>
-                     <div className="three wide column header">$ { home.price }</div>
-                     <div className="five wide column">
-                        <div className="right floated content">
-                           <Link to={`/homes/edit/${home.id}`} className="tiny ui button primary">
-                              Edit
-                           </Link>
-                           <Link to={`/homes/delete/${home.id}`} className="tiny ui button negative">
-                              Delete
-                           </Link>
-                           <button className="tiny ui olive button">
-                              Monthly cost 
-                           </button>
-                        </div>
-                     </div>
-                  </div> 
+                  <Link className="header" to={`/homes/details/${home.id}`}>{ home.address }</Link>
+                  <div className="meta">$ { home.price }</div>
                   <div className="ui form">
                      <div className="field">
                         <textarea rows="1" placeholder="I like this home because..."></textarea>
+                     </div>
+                  </div>
+                  <div className="extra">
+                     <div className="right floated content">
+                        <Link to={`/homes/edit/${home.id}`} className="tiny ui button primary">
+                           Edit
+                        </Link>
+                        <Link to={`/homes/delete/${home.id}`} className="tiny ui button negative">
+                           Delete
+                        </Link>
+                        <Link to={`/homes/monthlycost/${home.id}`} className="tiny ui olive button">
+                           Monthly cost 
+                        </Link>
                      </div>
                   </div>
                </div> 
@@ -49,7 +47,7 @@ class HomeList extends React.Component {
       return (
          <div>
             <h2>Homes List</h2>
-            <div className="ui celled list">
+            <div className="ui divided items">
                {this.renderList()}
             </div>
          </div>

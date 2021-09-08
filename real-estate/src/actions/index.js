@@ -45,3 +45,4 @@ export const deleteHome = id => async dispatch => {
     dispatch({ type: DELETE_HOME, payload: id });
     history.push('/');
 };
+
