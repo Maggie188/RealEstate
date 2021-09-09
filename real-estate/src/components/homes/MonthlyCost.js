@@ -9,7 +9,19 @@ class MonthlyCost extends React.Component {
       downpayrate: 20,
       interest: 2.828,
       loanterm: "1",
-      taxrate: 0.81
+      taxrate: 0.81,
+      homeinsurance: 0,
+      hoa: 0,
+      principalActive: false,
+      taxActive: false,
+      insuranceActive: false,
+      hoaActive: false,
+      utilityActive: false,
+      checked: false,
+      water: 0,
+      gas: 0,
+      internet: 0,
+      electric: 0
    }
 
 
@@ -79,6 +91,97 @@ class MonthlyCost extends React.Component {
    }
    
 
+   inschange = e => {
+      const value = e.target.value
+      if (!value)
+         this.setState({ homeinsurance : 0 })
+      else if (this.state.homeinsurance !== value)
+         this.setState({ homeinsurance : value })
+   }
+
+   hoachange = e => {
+      const value = e.target.value
+      if (!value)
+         this.setState({ hoa : 0 })
+      else if (this.state.hoa !== value)
+         this.setState({ hoa : value })
+   }
+
+   waterchange = e => {
+      const value = e.target.value
+      if (!value)
+         this.setState({ water : 0 })
+      else if (this.state.water !== value)
+         this.setState({ water : value })
+   }
+
+   gaschange = e => {
+      const value = e.target.value
+      if (!value)
+         this.setState({ gas : 0 })
+      else if (this.state.gas !== value)
+         this.setState({ gas : value })
+   }
+
+   internetchange = e => {
+      const value = e.target.value
+      if (!value)
+         this.setState({ internet : 0 })
+      else if (this.state.internet !== value)
+         this.setState({ internet : value })
+   }
+
+   electricchange = e => {
+      const value = e.target.value
+      if (!value)
+         this.setState({ electric : 0 })
+      else if (this.state.electric !== value)
+         this.setState({ electric : value })
+   }
+
+   onChecked = e => {
+      const value = e.target.checked
+      if (value === false) {
+         if (this.state.checked !== value)
+            this.setState({ checked : value})
+      }
+      else if (value === true) {
+         if (this.state.checked !== value)
+            this.setState({ checked : value})
+      }
+   }
+
+   onPrincipalClick = () => {
+      if (this.state.principalActive === false)
+         this.setState({ principalActive: true })
+      else this.setState({ principalActive: false })
+   }
+
+   onTaxClick = () => {
+      if (this.state.taxActive === false)
+         this.setState({ taxActive: true })
+      else this.setState({ taxActive: false })
+   }
+
+   onInsuranceClick = () => {
+      if (this.state.insuranceActive === false)
+         this.setState({ insuranceActive: true })
+      else this.setState({ insuranceActive: false })
+   }
+
+   onHOAClick = () => {
+      if (this.state.hoaActive === false)
+         this.setState({ hoaActive: true })
+      else this.setState({ hoaActive: false })
+   }
+
+   onUtilityClick = () => {
+      if (this.state.utilityActive === false)
+         this.setState({ utilityActive: true })
+      else this.setState({ utilityActive: false })
+   }
+   
+   
    render() {
       if (!this.props.home) {
          return <div>Loading...</div>;
@@ -101,6 +204,21 @@ class MonthlyCost extends React.Component {
       const yearlyPropTax = tmpYearlyPropTax.toFixed(2)
       const monthlyPropTax = yearlyPropTax / 12
 
+      const tmpHomeInsurance = this.state.homeinsurance / 12
+      const homeInsurance = tmpHomeInsurance.toFixed(2)
+
+      const tmpUtility = parseFloat(this.state.water) + parseFloat(this.state.gas) + parseFloat(this.state.internet) + parseFloat(this.state.electric)
+      const utility = this.state.checked === true ? tmpUtility : 0
+
+      const tmpMonthlyCost = parseFloat(payment) + parseFloat(monthlyPropTax) + parseFloat(homeInsurance) + parseFloat(this.state.hoa) + parseFloat(utility)
+      const monthlyCost = tmpMonthlyCost.toFixed(2)
+
+      const principalActive = this.state.principalActive === true ? 'active' : '';
+      const taxActive = this.state.taxActive === true ? 'active' : '';
+      const insuranceActive = this.state.insuranceActive === true ? 'active' : '';
+      const hoaActive = this.state.hoaActive === true ? 'active' : '';
+      const utilityActive = this.state.utilityActive === true ? 'active' : '';
+
       return (
          <div>
             <h2 className="ui dividing header">
@@ -112,14 +230,14 @@ class MonthlyCost extends React.Component {
             <div className="ui styled accordion">
                <h4 className="ui top centered attached header">
                   <div>Estimated monthly cost</div>
-                  <div>$</div>
+                  <div>{`$ ${monthlyCost}`}</div>
                </h4>
-               <div className="title active">
+               <div className={`title ${principalActive}`} onClick={() => this.onPrincipalClick()}>
                   <i className="dropdown icon"></i>
                   <span>Principal & interest</span>
                   <span className="ui right floated header">{`$ ${payment} / mo`}</span>
                </div>
-               <div className="active content">
+               <div className={`${principalActive} content`} >
                   <form className="ui form">
                      <div className="field">
                         <label>Home Price</label>
@@ -166,13 +284,13 @@ class MonthlyCost extends React.Component {
                   </form>
                </div>
 
-               <div className="title active">
+               <div className={`title ${taxActive}`} onClick={() => this.onTaxClick()}>
                   <i className="dropdown icon"></i>
                   <span>Property taxes</span>
-                  <span className="ui right floated header">{`$ ${monthlyPropTax}`}</span>
+                  <span className="ui right floated header">{`$ ${monthlyPropTax} / mo`}</span>
                </div>
-               <div className="active content">
-                  <div class="ui equal width padded grid">
+               <div className={`${taxActive} content`} >
+                  <div className="ui equal width padded grid">
                      <div className="row">
                         <div className="left aligned five wide column">
                            Home price
@@ -202,30 +320,80 @@ class MonthlyCost extends React.Component {
                   </div>
                </div>
 
-               <div className="title active">
+               <div className={`title ${insuranceActive}`} onClick={() => this.onInsuranceClick()}>
                   <i className="dropdown icon"></i>
                   <span>Home insurance</span>
-                  <span className="ui right floated header">$</span>
+                  <span className="ui right floated header">{`$ ${homeInsurance} / mo`}</span>
                </div>
-               <div className="active content">
-
+               <div className={`${insuranceActive} content`}>
+                  <div className="ui right labeled input">
+                     <label className="ui label">$</label>
+                     <input type="float" value={this.state.homeinsurance} onChange={(e) => this.inschange(e)} />
+                     <div className="ui basic label">/year</div>
+                  </div>
                </div>
 
-               <div className="title active">
+               <div className={`title ${hoaActive}`} onClick={() => this.onHOAClick()}>
                   <i className="dropdown icon"></i>
                   <span>HOA fees</span>
-                  <span className="ui right floated header">$</span>
+                  <span className="ui right floated header">{`$ ${this.state.hoa} / mo`}</span>
                </div>
-               <div className="active content">
-
+               <div className={`${hoaActive} content`}>
+                  <div className="ui right labeled input">
+                     <label className="ui label">$</label>
+                     <input type="float" value={this.state.hoa} onChange={(e) => this.hoachange(e)} />
+                     <div className="ui basic label">/mo</div>
+                  </div>
                </div>
 
-               <div className="title active">
+               <div className={`title ${utilityActive}`} onClick={() => this.onUtilityClick()}>
                   <i className="dropdown icon"></i>
                   <span>Utilities</span>
-                  <span className="ui right floated header">$</span>
+                  <span className="ui right floated header">{`$ ${utility} / mo`}</span>
                </div>
-               <div className="active content">
+               <div className={`${utilityActive} content`}>
+                  <div className="ui checkbox">
+                     <input type="checkbox" onClick={(e) => this.onChecked(e)}/>
+                     <label>Include utilities in payment</label>
+                  </div>
+                  <div className="ui form">
+                     <div className="fields">
+                        <div className="field">
+                           <label>Water/Sewer</label>
+                           <div className="ui right labeled input">
+                              <label className="ui label">$</label>
+                              <input type="float" value={this.state.water} onChange={(e) => this.waterchange(e)} />
+                              <div className="ui basic label">/mo</div>
+                           </div>
+                        </div>
+                        <div className="field">
+                           <label>Gas</label>
+                           <div className="ui right labeled input">
+                              <label className="ui label">$</label>
+                              <input type="float" value={this.state.gas} onChange={(e) => this.gaschange(e)} />
+                              <div className="ui basic label">/mo</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div className="fields">
+                        <div className="field">
+                           <label>Internet</label>
+                           <div className="ui right labeled input">
+                              <label className="ui label">$</label>
+                              <input type="float" value={this.state.internet} onChange={(e) => this.internetchange(e)} />
+                              <div className="ui basic label">/mo</div>
+                           </div>
+                        </div>
+                        <div className="field">
+                           <label>Electric</label>
+                           <div className="ui right labeled input">
+                              <label className="ui label">$</label>
+                              <input type="float" value={this.state.electric} onChange={(e) => this.electricchange(e)} />
+                              <div className="ui basic label">/mo</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
 
                </div>
 
